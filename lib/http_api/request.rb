@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 require_relative "timeout_response"
 require_relative "response"
 require_relative "headers"
@@ -59,7 +58,7 @@ module HttpApi
         options_key = if method == :get
                         :params
                       else
-                        options.is_a?(Hash) && options[:parameter_passing_option].present? ? options.delete(:parameter_passing_option) : :json
+                        options.is_a?(Hash) && options[:parameter_passing_option] ? options.delete(:parameter_passing_option) : :json
                       end
 
         uri = "#{url}/#{path}"

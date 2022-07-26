@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 module HttpApi
   class TimeoutResponse
     include Singleton
@@ -19,6 +18,9 @@ module HttpApi
 
     def status
       HTTP::Response::Status.new(408)
+    end
+
+    def mime_type
     end
 
     def to_s
