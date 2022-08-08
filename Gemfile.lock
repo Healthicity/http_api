@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     http_api (1.0.0)
-      activesupport (>= 6.0.0, < 7)
+      activesupport
       http (~> 3.3)
 
 GEM
