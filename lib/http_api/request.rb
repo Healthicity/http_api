@@ -66,7 +66,7 @@ module HttpApi
       end
 
       def http_client
-        HTTP.timeout(:per_operation, write: 2, connect: 5, read: 10)
+        HTTP.timeout(write: 2, connect: 5, read: 10)
       end
 
       def log_response(url, method, path, request_options, response)
