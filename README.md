@@ -18,4 +18,4 @@ And then execute:
 http_api is released under the MIT License.
 
 ## Credits
-This gem is based on [http](https://github.com/httprb/http). Thank you to the [awesome contributors](https://github.com/sass/sassc-rails/graphs/contributors)
+This gem is based on [http](https://github.com/httprb/http). Thank you to the [awesome contributors](https://github.com/httprb/http/graphs/contributors)
