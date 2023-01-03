@@ -11,9 +11,9 @@ Gem::Specification.new do |spec|
   spec.files       = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   spec.homepage    = "https://github.com/Healthicity/http_api"
   spec.license     = "MIT"
-  spec.add_dependency 'http', '~> 4'
+  spec.add_dependency 'http', '~> 5'
   spec.add_dependency 'activesupport'
   spec.add_development_dependency 'webmock', '~> 3'
-  spec.add_development_dependency 'rake', '~> 12'
+  spec.add_development_dependency 'rake', '~> 13'
   spec.add_development_dependency 'test-unit'
 end

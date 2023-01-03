@@ -11,8 +11,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        ruby-version:
-          - "2.7"
+        ruby-version: ['2.7', '3.0', '3.1', '3.2']
         gemfile:
           - Gemfile
 
@@ -23,7 +22,7 @@ jobs:
       BUNDLE_GEMFILE: ${{ matrix.gemfile }}
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
     - name: Install ruby
       uses: ruby/setup-ruby@v1
