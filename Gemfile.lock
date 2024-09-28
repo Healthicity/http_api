@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    http_api (2.1.1)
+    http_api (3.0.0)
       activesupport
       http (~> 5)
 
