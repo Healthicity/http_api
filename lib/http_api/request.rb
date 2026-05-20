@@ -34,22 +34,41 @@ module HttpApi
 
     private
 
-      def perform_request(method, path, options = {})
-        tries ||= 3
+      DEFAULT_RETRY_COUNT = 2
 
+      def perform_request(method, path, options = {})
         if options.respond_to?(:merge!)
           options.merge!(default_options)
         end
+
+        retries_allowed = retry_count(options)
+        retries_remaining = retries_allowed
 
         response = send_request(method, path, options)
         log_response(url, method, path, options, (response.parse rescue ""))
 
         response_with_wrapper(response)
       rescue HTTP::TimeoutError => e
-        sleep (4 - tries)
-        retry unless (tries -= 1).zero?
+        if retries_remaining.positive?
+          sleep(retries_allowed - retries_remaining + 1)
+          retries_remaining -= 1
+          retry
+        end
+
         log_response(url, method, path, options, "TIMEOUT")
         response_with_wrapper(HttpApi::TimeoutResponse.instance)
+      end
+
+      def retry_count(options)
+        return DEFAULT_RETRY_COUNT unless options.is_a?(Hash)
+
+        count = if options.key?(:retry_count)
+                  options.delete(:retry_count)
+                elsif options.key?("retry_count")
+                  options.delete("retry_count")
+                end
+
+        count.nil? ? DEFAULT_RETRY_COUNT : [count.to_i, 0].max
       end
 
       def send_request(method, path, options = {})
